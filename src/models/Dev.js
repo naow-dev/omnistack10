@@ -1,0 +1,17 @@
+const mongoose = require('mongoose');
+//Informar os dados do Dev pro mongodb
+const PointSchema = require('./utils/PointSchema');
+
+const DevSchema = new mongoose.Schema({
+    name: String,
+    github_user: String,
+    bio: String,
+    avatar_url: String,
+    techs: [String],
+    location: {
+        type: PointSchema,
+        index: '2dsphere'
+    }
+});
+
+module.exports = mongoose.model('Dev', DevSchema);
